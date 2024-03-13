@@ -6,42 +6,48 @@
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
  
- 
 #include <iostream>
 #include <string>
+#include <cstring>
  
 struct Node {
-    int destination;
-    char payload[6];
+    int dest;
+    char PL[6];
+    Node* next;
+ 
+    // Constructor to initialize dest and PL
+    Node(int d, const char* p) : dest(d), next(nullptr) {
+        // Copy up to 5 characters from p into PL
+        strncpy(PL, p, 5);
+        PL[5] = '\0'; // Ensure null-termination
+    }
 };
+ 
  
 class Queue {
 private:
-    Node ring[6];
-    int head;
-    int tail;
+    Node* ring[6];
+    Node* head; // Pointer to the front (head) of the queue
+    Node* tail; // Pointer to the rear (tail) of the queue
+    int size;   // Current number of elements in the queue
  
 public:
-    Queue() {
-        head = 0;
-        tail = 0;
+    Queue() : head(nullptr), tail(nullptr), size(0) {
+        for (int i = 0; i < 6; ++i) {
+            ring[i] = nullptr;
+        }
     }
  
-    // case 1: enqueue
-    void enqueue(int destination, const std::string& payload);
-    // case 2: dequeue
-    void dequeue();
-    // case 3: show queue
-    void showQueue();
-    // input validator for destination
-    bool isDestinationValid(int destination) {
+    // Other member functions...
  
-        return destination >= 1 && destination <= 99 && std::to_string(destination).find_first_not_of("0123456789") == std::string::npos;
-    }
- 
-private:
     bool isFull();
+ 
     bool isEmpty();
+ 
+    int enqueue(Node* temp);
+    int dequeue();
+    void showQueue();
+    bool isDestinationValid(int dest);
 };
  
 #endif

@@ -1,52 +1,68 @@
-/*
-
-    Implement the following methods for the Queue class:
-*/
-
 #include "queue.hpp"
 #include <iostream>
 #include <cstring>
-
-
+ 
 bool Queue::isFull() {
-    return (tail + 1) % 6 == head;
+    return size == 6; // Queue is full if the number of elements equals the size of the ring array
 }
-
+ 
 bool Queue::isEmpty() {
-    return head == tail;
+    return size == 0; // Queue is empty if the number of elements is zero
 }
-
-void Queue::enqueue(int destination, const std::string& payload) {
+ 
+int Queue::enqueue(Node* temp) {
     if (isFull()) {
         std::cout << "Queue is full. Unable to enqueue.\n";
-        return;
+        return -1;
     }
-
-    ring[tail].destination = destination;
-    std::strncpy(ring[tail].payload, payload.c_str(), 6);
-    ring[tail].payload[5] = '\0'; // Ensure null-termination
-    tail = (tail + 1) % 6;
+ 
+    if (isEmpty()) {
+        head = temp;
+        tail = temp;
+    } else {
+        tail->next = temp;
+        tail = temp;
+    }
+    tail->next = head; // Circular link
+    size++;
+ 
+    return 0;
 }
-
-
-void Queue::dequeue() {
+ 
+int Queue::dequeue() {
     if (isEmpty()) {
         std::cout << "Queue is empty. Unable to dequeue.\n";
-        return;
+        return -1;
     }
-
-    head = (head + 1) % 6;
+ 
+    Node* temp = head;
+    if (head == tail) {
+        head = nullptr;
+        tail = nullptr;
+    } else {
+        head = head->next;
+        tail->next = head; // Update tail's next to maintain circular link
+    }
+    delete temp;
+    size--;
+ 
+    return 0;
 }
-
+ 
 void Queue::showQueue() {
     if (isEmpty()) {
         std::cout << "Queue is empty.\n";
         return;
     }
-
-    int i = head;
-    while (i != tail) {
-        std::cout << "Destination: " << ring[i].destination << " Payload: " << ring[i].payload << std::endl;
-        i = (i + 1) % 6;
-    }
+ 
+    Node* temp = head;
+    do {
+        std::cout << "Destination: " << temp->dest << " Payload: " << temp->PL << std::endl;
+        temp = temp->next;
+    } while (temp != head); // Loop until we reach the head again
+}
+ 
+bool Queue::isDestinationValid(int dest)
+{
+    return dest >= 1 && dest <= 99 && std::to_string(dest).find_first_not_of("0123456789") == std::string::npos;
 }
