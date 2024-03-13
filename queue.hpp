@@ -1,4 +1,3 @@
-[2:43 AM] Jonathan Erb
 /*
  
     Include file for queue.hpp

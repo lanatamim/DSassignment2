@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>
 #include "queue.hpp"
+#include <string>
+#include <limits>
  
 int main() {
     Queue queue;
@@ -21,9 +21,9 @@ int main() {
             case 1:
                 std::cout << "Enter the destination: ";
                 while (!(std::cin >> destination) || !queue.isDestinationValid(destination)) {
-                    std::cin.clear();
-                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     std::cout << "Invalid input. Please enter a valid destination (a number between 1 and 99): ";
+                    std::cin.clear(); // Clear error flags
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard the invalid input
                 }
                 std::cout << "Enter the payload: ";
                 std::cin >> payload;

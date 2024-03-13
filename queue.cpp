@@ -5,6 +5,7 @@
 
 #include "queue.hpp"
 #include <iostream>
+#include <cstring>
 
 
 bool Queue::isFull() {
@@ -23,8 +24,10 @@ void Queue::enqueue(int destination, const std::string& payload) {
 
     ring[tail].destination = destination;
     std::strncpy(ring[tail].payload, payload.c_str(), 6);
+    ring[tail].payload[5] = '\0'; // Ensure null-termination
     tail = (tail + 1) % 6;
 }
+
 
 void Queue::dequeue() {
     if (isEmpty()) {
