@@ -19,7 +19,8 @@ struct Node {
     Node(int d, const char* p) : dest(d), next(nullptr) {
         // Copy up to 5 characters from p into PL
         strncpy(PL, p, 5);
-        PL[5] = '\0'; // Ensure null-termination
+        // null termination
+        PL[5] = '\0';
     }
 };
  
@@ -27,9 +28,12 @@ struct Node {
 class Queue {
 private:
     Node* ring[6];
-    Node* head; // Pointer to the front (head) of the queue
-    Node* tail; // Pointer to the rear (tail) of the queue
-    int size;   // Current number of elements in the queue
+    // Pointer to the front (head) of the queue
+    Node* head;
+    // Pointer to the rear (tail) of the queue
+    Node* tail;
+    // Number of elements in the queue
+    int size;
  
 public:
     Queue() : head(nullptr), tail(nullptr), size(0) {
@@ -38,10 +42,8 @@ public:
         }
     }
  
-    // Other member functions...
- 
+    // Other member functions
     bool isFull();
- 
     bool isEmpty();
  
     int enqueue(Node* temp);

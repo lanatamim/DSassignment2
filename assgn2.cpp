@@ -1,3 +1,10 @@
+/*
+  Lana Tamim
+  Assignment 2
+  03/13/2024
+  Purpose: Enqueue and dequeue with a circular queue
+*/
+
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -9,7 +16,7 @@ int main() {
     int destination;
     std::string payload;
  
-    Node* temp; // Declare temp outside the switch statement
+    Node* temp;
     while (true) {
         std::cout << "Choose an operation:\n";
         std::cout << "1. Enqueue\n";

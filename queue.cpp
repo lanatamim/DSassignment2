@@ -3,11 +3,13 @@
 #include <cstring>
  
 bool Queue::isFull() {
-    return size == 6; // Queue is full if the number of elements equals the size of the ring array
+    // Queue is full if the number of elements is equal to the size of the ring
+    return size == 6;
 }
  
 bool Queue::isEmpty() {
-    return size == 0; // Queue is empty if the number of elements is zero
+    // Queue is empty if there are 0 elements
+    return size == 0;
 }
  
 int Queue::enqueue(Node* temp) {
@@ -59,7 +61,7 @@ void Queue::showQueue() {
     do {
         std::cout << "Destination: " << temp->dest << " Payload: " << temp->PL << std::endl;
         temp = temp->next;
-    } while (temp != head); // Loop until we reach the head again
+    } while (temp != head); // Loop until the head is reached
 }
  
 bool Queue::isDestinationValid(int dest)
