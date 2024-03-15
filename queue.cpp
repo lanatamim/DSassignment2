@@ -43,7 +43,7 @@ int Queue::dequeue() {
         tail = nullptr;
     } else {
         head = head->next;
-        tail->next = head; // Update tail's next to maintain circular link
+        tail->next = head; // Update tail's next
     }
     delete temp;
     size--;
@@ -60,6 +60,7 @@ void Queue::showQueue() {
     Node* temp = head;
     do {
         std::cout << "Destination: " << temp->dest << " Payload: " << temp->PL << std::endl;
+        std::cout << "Head: " << head->dest << " Tail: " << tail->dest << std::endl;
         temp = temp->next;
     } while (temp != head); // Loop until the head is reached
 }
