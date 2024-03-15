@@ -15,11 +15,10 @@ struct Node {
     char PL[6];
     Node* next;
  
-    // Constructor to initialize dest and PL
+    // Constructor initializes dest and PL
     Node(int d, const char* p) : dest(d), next(nullptr) {
-        // Copy up to 5 characters from p into PL
         strncpy(PL, p, 5);
-        // null termination
+        // null terminator
         PL[5] = '\0';
     }
 };
@@ -28,9 +27,9 @@ struct Node {
 class Queue {
 private:
     Node* ring[6];
-    // Pointer to the front (head) of the queue
+    // Pointer to the head of the queue
     Node* head;
-    // Pointer to the rear (tail) of the queue
+    // Pointer to the tail of the queue
     Node* tail;
     // Number of elements in the queue
     int size;

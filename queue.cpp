@@ -3,12 +3,12 @@
 #include <cstring>
  
 bool Queue::isFull() {
-    // Queue is full if the number of elements is equal to the size of the ring
+    // Queue full if the number of elements is equal to the size of the ring
     return size == 6;
 }
  
 bool Queue::isEmpty() {
-    // Queue is empty if there are 0 elements
+    // Queue empty if there are 0 elements
     return size == 0;
 }
  
